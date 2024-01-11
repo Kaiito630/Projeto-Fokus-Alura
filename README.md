@@ -6,6 +6,6 @@ _JavaScript: manipulando elementos no DOM_ e _JavaScript: explorando a manipula�
 
 O design foi desenvolvido pela plataforma Alura
 
-Tecnologias trabalhadas: HTML, CSS, Javascript e LocalStorage
+Tecnologias trabalhadas: **HTML, CSS, Javascript e LocalStorage**
 
-O projeto tem como função organização de resolução tarefas, com tempo pré-determinado para foco, descansos curtos e longos. Também adicionei além de todas as funcionalidades recomendadaas nos dois cursos, um botão que faz a tarefa ser ou deixar de ser completa automaticamente.
+O projeto tem como função **organização e resolução tarefas**, com tempo pré-determinado para foco, descansos curtos e longos. Complemetando as funcionalidades recomendadaas nos dois cursos, tomei a iniciativa de adicionar uma **featture própria**: um botão que faz a tarefa ser ou deixar de ser completa automaticamente.
