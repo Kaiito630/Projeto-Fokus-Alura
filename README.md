@@ -1,8 +1,8 @@
-## Projeto Alura Fokus
+## Projeto Alura Fokus 
 
 
 Projeto desenvolvido para treino de JavaSccript seguindo os cursos da plataforma Alura:
-'JavaScript: manipulando elementos no DOM' e 'JavaScript: explorando a manipulação de elementos e da localStorage'
+_JavaScript: manipulando elementos no DOM_ e _JavaScript: explorando a manipulação de elementos e da localStorage_
 
 O design foi desenvolvido pela plataforma Alura
 
