@@ -3,6 +3,8 @@ const html = document.querySelector('html')
 const btnFoco = document.querySelector('.app__card-button--foco')
 const btnCurto = document.querySelector('.app__card-button--curto')
 const btnLongo = document.querySelector('.app__card-button--longo')
+// const btnPersonalizado = document.querySelector('.app__card-button--personalizado')
+const btnTempoEdit = document.querySelector('.btn_edit-time')
 const banner = document.querySelector('.app__image')
 const titulo = document.querySelector('.app__title')
 const btns = document.querySelectorAll('.app__card-button')
@@ -11,7 +13,7 @@ const btnIniciarPausar = document.querySelector('#start-pause')
 const imgBtnIniciarPausar = document.querySelector('.app__card-primary-butto-icon')
 const txtBtnIniciarPausar = document.querySelector('#start-pause span')
 const tempoNaTela = document.querySelector('#timer')
-
+const personalizadoDiv = document.querySelector('.list-personalizado')
 let intervalo = null
 let tempoDecorridoEmSegundos = 10
 
@@ -35,7 +37,7 @@ btnIniciarPausar.addEventListener('click', iniciarPausar)
 const contagemRegressiva = () => {
     if(tempoDecorridoEmSegundos <= 0) {
         audioZerouTemp.play()
-        alert('Acabou o tempoooo!')
+        alert('Acabou o tempo!')
         if (html.getAttribute('data-contexto') == 'foco') {
             document.dispatchEvent(new CustomEvent('FocoFinalizado'))
         }
@@ -76,20 +78,28 @@ toggleMusica.addEventListener('change', () => {
 })
 
 // Contexto
+btnPersonalizado.addEventListener('click', (event) => {
+    event.stopPropagation()
+    tempoDecorridoEmSegundos = 1500
+    alterarContexto('personalizado')
+    personalizadoDiv.classList.add('active')
+    btnPersonalizado.classList.add('active')
+})
+
 btnFoco.addEventListener('click', () => {
-    // tempoDecorridoEmSegundos = 1500
+    tempoDecorridoEmSegundos = 1500
     alterarContexto('foco')
     btnFoco.classList.add('active')
 })
 
 btnCurto.addEventListener('click', () => {
-    // tempoDecorridoEmSegundos = 300
+    tempoDecorridoEmSegundos = 300
     alterarContexto('descanso-curto')
     btnCurto.classList.add('active')
 })
 
 btnLongo.addEventListener('click', () => {
-    // tempoDecorridoEmSegundos = 900
+    tempoDecorridoEmSegundos = 900
     alterarContexto('descanso-longo')
     btnLongo.classList.add('active')
 });
@@ -98,9 +108,11 @@ function alterarContexto(contexto) {
     mostrarTempo()
     btns.forEach(function (btn) {
         btn.classList.remove('active')
+        personalizadoDiv.classList.remove('active')
     })
     html.setAttribute('data-contexto', contexto)
-    banner.setAttribute('src', `./imagens/${contexto}.png`)
+    let img = contexto == 'personalizado' ? 'foco' : contexto 
+    banner.setAttribute('src', `./imagens/${img}.png`)
     switch(contexto) {
         case "foco": 
             titulo.innerHTML = 'Otimize sua produtividade,<br><strong class="app__title-strong">mergulhe no que importa.</strong>'
@@ -111,5 +123,7 @@ function alterarContexto(contexto) {
         case "descanso-longo":
             titulo.innerHTML = 'Hora de voltar à superfície.<br><strong class="app__title-strong">Faça uma pausa longa.</strong>'
             break
+        case "personalizado":
+            titulo.innerHTML = 'Escreva sua história.<br><strong class="app__title-strong">Escolha o seu tempo.</strong>'
     }
 }

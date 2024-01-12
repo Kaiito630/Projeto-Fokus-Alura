@@ -83,11 +83,13 @@ function criarElementoTarefa(tarefa) {
         event.stopPropagation()
         if(tarefa.completa) {
             li.classList.remove('app__section-task-list-item-complete')
-            btn.setAttribute('disabled', false)
+            removeClassActiveTask(li)
+            btn.removeAttribute('disabled')
             tarefa.completa = false
             atualizarTarefas()
         }
         else{
+            removeClassActiveTask(li)
             tarefaCompleta(li ,btn)
             tarefa.completa = true
             atualizarTarefas()
@@ -98,7 +100,8 @@ function criarElementoTarefa(tarefa) {
     paragrafo.classList.add('app__section-task-list-item-description')
     const btn = document.createElement('button')
     btn.classList.add('app_button-edit')
-    btn.onclick = () => {
+    btn.onclick = (event) => {
+        event.stopPropagation()
         editarTarefas(paragrafo, tarefa)
     }
     const imgbtn = document.createElement('img')
@@ -139,6 +142,7 @@ function tarefaCompleta(add ,dis) {
 }
 
 function removeClassActiveTask(task) {
+    tarefaEmAndamento.textContent = ''
     task.classList.remove('app__section-task-list-item-active')
 }
 

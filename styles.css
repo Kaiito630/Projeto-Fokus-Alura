@@ -10,7 +10,7 @@
     --fundo-card-concludo: rgba(0, 244, 191, 0.40);
 }
 
-[data-contexto="foco"] {
+[data-contexto="foco"],[data-contexto="personalizado"] {
     --main-bg-color: linear-gradient(180deg, #8B1FF8 0%, #041832 48.44%, #01080E 100%);
 }
 
@@ -84,11 +84,12 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--fundo-card-timer);
     padding: 2.4rem;
     margin: 8rem 0;
-    width: 59rem;
+    width: 80rem;
     max-width: 90%;
 }
 
 .app__card-list {
+    overflow: hidden;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -99,6 +100,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .app__card-button {
+    z-index: 1;
     font-family: Montserrat;
     font-size: 1.8rem;
     font-style: normal;
@@ -112,10 +114,42 @@ h1, h2, h3, h4, h5, h6 {
     outline: inherit;
 }
 
+.list-personalizado.active {
+    border-radius: 0.8rem;
+    background: var(--azul-royal);
+    font-weight: 600;
+    padding: 0 8px 0 0;
+}
 .app__card-button.active {
     border-radius: 0.8rem;
     background: var(--azul-royal);
     font-weight: 600;
+}
+
+.list-personalizado {
+    gap: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.btn_edit-timer {
+    z-index: 2;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    overflow: hidden;
+    position: relative;
+}
+
+.btn_edit-timer img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .app__card-timer {
@@ -360,7 +394,25 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: space-between;
 }
 
-.app_button-edit,
+.app_button-edit {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    overflow: hidden;
+    position: relative;
+}
+
+.app_button-edit img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 .app_button-more {
     border: none;
     cursor: pointer;
@@ -517,5 +569,29 @@ h1, h2, h3, h4, h5, h6 {
     background: none; 
     border: none;
     cursor: pointer;
-    z-index: 2;
 }
+
+/* .dropdown-timer {
+    position: relative;
+}
+
+.app_btn-timer {
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.botao-circulo:hover ~ .app__section-task-header__ul {
+    border-radius: 100%;
+    background: none; 
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    display: block;
+    text-align: right;
+}
+
+.container-edit-timer {} */
