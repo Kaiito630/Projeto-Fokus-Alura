@@ -50,13 +50,18 @@
                     <li class="app__card-list-item">
                         <div class="list-personalizado">
                             <button data-contexto="personalizado" class="app__card-button app__card-button--personalizado">Foco personalizado</button>
-                            <div class="dropdown-timer">
-                                <button class="btn_edit-timer">
-                                    <img src="./imagens/edit.png"/>
-                                </button>
-                                <div class="container-edit-timer">
-                                    Teste
-                                </div>
+                            <button class="btn_edit-timer">
+                                <img src="./imagens/edit.png" alt="">
+                            </button>
+
+                            <div class="modal-timer">
+                                <label class="label-timer" for="timeInput">Quanto tempo você deseja focar?</label>
+                                <input required class="input-timer" type="text" maxlength="5"
+                                placeholder="Formato: Minutos:Segundos, ex: 07:09" :pattern="([0-5][0-9]):([0-5][0-9])" >
+                                <footer class="footer-timer">
+                                    <button class="fechar-timer">Fechar</button>
+                                    <button class="definir-timer">Definir</button>
+                                </footer>
                             </div>
                         </div>
                     </li>
@@ -92,11 +97,11 @@
                 </header>
                 <div class="app__section-task-header">
                     <h2 class="app__section-tasks-heading">Lista de tarefas:</h2>
-                    <!-- <div class="dropdown-container"> -->
+                    <div class="dropdown-container">
                         <button class="app_button-more">
                             <img src="./imagens/more.svg" alt="">
                         </button>
-                        <!-- <ul class="app__section-task-header__ul">
+                        <ul class="app__section-task-header__ul">
                             <li class="app__section-task-header__li">
                                 <button class="app__section-task-header__li__button" id="btn-remover-concluidas">
                                     <img src="./imagens/check.svg" alt="">
@@ -109,9 +114,9 @@
                                     Limpar todas as tarefas
                                 </button>
                             </li>
-                        </ul> -->
+                        </ul>
                     </div>
-                <!-- </div> -->
+                </div>
                 <ul class="app__section-task-list"></ul>
                 <form class="app__form-add-task hidden" aria-hidden="true">
                     <div class="app__form-field">

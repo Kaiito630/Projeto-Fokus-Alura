@@ -1,10 +1,14 @@
 // Variaveis
+const body = document.body
 const html = document.querySelector('html')
 const btnFoco = document.querySelector('.app__card-button--foco')
 const btnCurto = document.querySelector('.app__card-button--curto')
 const btnLongo = document.querySelector('.app__card-button--longo')
-// const btnPersonalizado = document.querySelector('.app__card-button--personalizado')
-const btnTempoEdit = document.querySelector('.btn_edit-time')
+const btnPersonalizado = document.querySelector('.app__card-button--personalizado')
+const btnTempoEdit = document.querySelector('.btn_edit-timer')
+const btnFecharTempo = document.querySelector('.fechar-timer')
+const btnDefinirTempo = document.querySelector('.definir-timer')
+const inputTempo = document.querySelector('.input-timer')
 const banner = document.querySelector('.app__image')
 const titulo = document.querySelector('.app__title')
 const btns = document.querySelectorAll('.app__card-button')
@@ -14,6 +18,7 @@ const imgBtnIniciarPausar = document.querySelector('.app__card-primary-butto-ico
 const txtBtnIniciarPausar = document.querySelector('#start-pause span')
 const tempoNaTela = document.querySelector('#timer')
 const personalizadoDiv = document.querySelector('.list-personalizado')
+const modalTimer = document.querySelector(".modal-timer")
 let intervalo = null
 let tempoDecorridoEmSegundos = 10
 
@@ -23,6 +28,52 @@ const audioPausouTemp = new Audio('./sons/pause.mp3')
 const musica = new Audio('./sons/luna-rise-part-one.mp3')
 musica.loop = true
 mostrarTempo()
+
+inputTempo.addEventListener('input', () => {
+    inputTempo.value = inputTempo.value.replace(/[^0-9:]/g, '');
+
+    if (inputTempo.value.length >= 2 && inputTempo.value.indexOf(':') === -1) {
+        inputTempo.value = inputTempo.value.slice(0, 2) + ':' + inputTempo.value.slice(2);
+    }
+
+    if (inputTempo.value.slice(-1) === ':' && inputTempo.value.slice(-2, -1) === ':') {
+        inputTempo.value = inputTempo.value.slice(0, -1);
+    }
+})
+
+btnDefinirTempo.addEventListener('click', () => {
+    const tempoDividido = inputTempo.value.split(':')
+    console.log(tempoDividido[1])
+    // if(tempoDividido[1] = undefined)
+    if(inputTempo.value = null) {
+        alert("Limite de tempo atingido")
+        segundos = 3599
+    }
+    segundos = parseInt(tempoDividido[0]) * 60 + parseInt(tempoDividido[1])
+    if(segundos >= 3600) {
+        alert("Limite de tempo atingido")
+        segundos = 3599
+    }
+    
+    tempoDecorridoEmSegundos = segundos
+    mostrarTempo()
+    fecharModalTempo()
+})
+
+btnFecharTempo.addEventListener('click', () => {
+    fecharModalTempo()
+})
+ 
+function fecharModalTempo () {
+    modalTimer.style.display = "none";
+    body.classList.remove("modal-open");
+}
+
+btnTempoEdit.addEventListener('click', (event) => {
+    event.stopPropagation()
+    modalTimer.style.display = "block";
+    body.classList.add("modal-open");
+})
 
 // Tempo
 function mostrarTempo() {
