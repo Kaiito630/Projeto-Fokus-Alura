@@ -11,4 +11,4 @@ O design foi desenvolvido pela plataforma Alura
 Tecnologias trabalhadas: **HTML, CSS, Javascript e LocalStorage**
 
 
-O projeto tem como função **organização e resolução tarefas**, com tempo pré-determinado para foco, descansos curtos e longos. Complemetando as funcionalidades recomendadaas nos dois cursos, tomei a iniciativa de adicionar uma **featture própria**: um botão que faz a tarefa ser ou deixar de ser completa automaticamente.
+O projeto tem como função **organização e resolução tarefas**, com tempo pré-determinado para foco, descansos curtos e longos. Complemetando as funcionalidades recomendadaas nos dois cursos, tomei a iniciativa de adicionar duas **feattures próprias**: um botão que faz a tarefa ser ou deixar de ser completa automaticamente, sem ter que passar pelo tempo determinado e um botão de tempo personaizado, onde o usuário pode escolher o tempo que quer focar entre 00:01 a 59:59 minutos.
