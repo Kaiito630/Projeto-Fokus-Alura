@@ -26,8 +26,10 @@ const removerTarefas = (completas) => {
 document.addEventListener('FocoFinalizado', () => {
     if(tarefaSelecionada && liTarefaSelecionada) {
         removeClassActiveTask(liTarefaSelecionada)
-        tarefaCompleta(liTarefaSelecionada, liTarefaSelecionada.querySelector('button'))
+        tarefaEmAndamento.textContent = ''
+        tarefaCompleta(liTarefaSelecionada, liTarefaSelecionada.querySelector('app_button-edit'))
         tarefaSelecionada.completa = true
+        tarefaSelecionada = null
         atualizarTarefas()
     }
 }) 
@@ -79,22 +81,6 @@ function criarElementoTarefa(tarefa) {
             <path d="M9 16.1719L19.5938 5.57812L21 6.98438L9 18.9844L3.42188 13.4062L4.82812 12L9 16.1719Z" fill="#01080E"></path>
         </svg>
     `
-    button.onclick = (event) => {
-        event.stopPropagation()
-        if(tarefa.completa) {
-            li.classList.remove('app__section-task-list-item-complete')
-            removeClassActiveTask(li)
-            btn.removeAttribute('disabled')
-            tarefa.completa = false
-            atualizarTarefas()
-        }
-        else{
-            removeClassActiveTask(li)
-            tarefaCompleta(li ,btn)
-            tarefa.completa = true
-            atualizarTarefas()
-        }    
-    }
     const paragrafo = document.createElement('p')
     paragrafo.textContent = tarefa.titulo
     paragrafo.classList.add('app__section-task-list-item-description')
@@ -133,6 +119,22 @@ function criarElementoTarefa(tarefa) {
             }
         }
     }
+    button.onclick = (event) => {
+        event.stopPropagation()
+        if(tarefa.completa) {
+            li.classList.remove('app__section-task-list-item-complete')
+            button.removeAttribute('disabled')
+            btn.removeAttribute('disabled')
+            tarefa.completa = false
+            atualizarTarefas()
+        }
+        else{
+            removeClassActiveTask(li)
+            tarefaCompleta(li ,btn)
+            tarefa.completa = true
+            atualizarTarefas()
+        }
+    }
     return li
 }
 
@@ -142,16 +144,17 @@ function tarefaCompleta(add ,dis) {
 }
 
 function removeClassActiveTask(task) {
-    tarefaEmAndamento.textContent = ''
     task.classList.remove('app__section-task-list-item-active')
 }
 
 function editarTarefas(p, t) {
-    const novoTitulo = prompt("Qual o nome da tarefa?")
-    if (novoTitulo) {
-        p.textContent = novoTitulo
-        t.titulo = novoTitulo
-        atualizarTarefas()
+    if(!t.completa) {
+        const novoTitulo = prompt("Qual o nome da tarefa?")
+        if (novoTitulo) {
+            p.textContent = novoTitulo
+            t.titulo = novoTitulo
+            atualizarTarefas()
+        }
     }
 }
 

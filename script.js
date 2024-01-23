@@ -20,7 +20,7 @@ const tempoNaTela = document.querySelector('#timer')
 const personalizadoDiv = document.querySelector('.list-personalizado')
 const modalTimer = document.querySelector(".modal-timer")
 let intervalo = null
-let tempoDecorridoEmSegundos = 10
+let tempoDecorridoEmSegundos = 1500
 
 const audioZerouTemp = new Audio('./sons/beep.mp3')
 const audioIniciouTemp = new Audio('./sons/play.wav')
@@ -43,18 +43,19 @@ inputTempo.addEventListener('input', () => {
 
 btnDefinirTempo.addEventListener('click', () => {
     const tempoDividido = inputTempo.value.split(':')
-    console.log(tempoDividido[1])
-    // if(tempoDividido[1] = undefined)
     if(inputTempo.value = null) {
         alert("Limite de tempo atingido")
         segundos = 3599
     }
     segundos = parseInt(tempoDividido[0]) * 60 + parseInt(tempoDividido[1])
     if(segundos >= 3600) {
-        alert("Limite de tempo atingido")
+        alert("Tempo fora dos limites")
         segundos = 3599
     }
-    
+    else if(segundos <= 0) {
+        alert("Tempo fora dos limites")
+        segundos = 1
+    }
     tempoDecorridoEmSegundos = segundos
     mostrarTempo()
     fecharModalTempo()
@@ -131,7 +132,7 @@ toggleMusica.addEventListener('change', () => {
 // Contexto
 btnPersonalizado.addEventListener('click', (event) => {
     event.stopPropagation()
-    tempoDecorridoEmSegundos = 1500
+    tempoDecorridoEmSegundos = 2100
     alterarContexto('personalizado')
     personalizadoDiv.classList.add('active')
     btnPersonalizado.classList.add('active')
